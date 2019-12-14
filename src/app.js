@@ -1,14 +1,25 @@
-import React, {useState} from "react";
+import React from "react";
+import Index from "./views/index.js"
+import About from "./views/about.js"
+import User from "./views/user.js"
 
-function App(props) {
-  const [count, setCount] = useState(1)
-  return (
-    <div>
-      <h1>hello {props.targ} !</h1>
-      <div>{count}</div>
-      <button onClick={()=>setCount(count+1)}>增加</button>
-    </div>
-  )
-}
-
-export default <App targ="timeLorder"></App>
+export default [
+  {
+    path: '/',
+    component: Index,
+    // exact: true,
+    key: 'index'
+  },
+  {
+    path: '/user',
+    component: User,
+    exact: true,
+    key: 'user'
+  },
+  {
+    path: '/about',
+    component: About,
+    exact: true,
+    key: 'about'
+  }
+]
