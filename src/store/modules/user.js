@@ -5,7 +5,7 @@ const GET_USERINFO = "USER/GET_USERINFO"
 
 export const getUserinfo = server => {
   return (dispatch, getState, axiosInstance) => {
-    return axios.get("http://localhost:9090/api/user/info").then(res=>{
+    return axios.get("http://localhost:9093/api/user/info").then(res=>{
       dispatch({
         type: GET_USERINFO,
         info: res.data.data

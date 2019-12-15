@@ -1,8 +1,8 @@
 const app = require("express")()
 
 app.get("/api/user/info", (req, res)=>{
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'OPTION, POST, GET')
+  // res.header('Access-Control-Allow-Origin', '*')
+  // res.header('Access-Control-Allow-Methods', 'OPTION, POST, GET')
   res.header('Content-Type', 'application/json;charset=UTF-8')
   res.json({
     code: 0,
@@ -11,8 +11,8 @@ app.get("/api/user/info", (req, res)=>{
 })
 
 app.get("/api/course/list", (req, res)=>{
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'OPTION, POST, GET')
+  // res.header('Access-Control-Allow-Origin', '*')
+  // res.header('Access-Control-Allow-Methods', 'OPTION, POST, GET')
   res.header('Content-Type', 'application/json;charset=UTF-8')
   res.json({
     code: 0,

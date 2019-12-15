@@ -5,7 +5,7 @@ const GET_LIST = "HOME/GET_LIST"
 
 export const getHomeList = server => {
   return (dispatch, getState, axiosInstance) => {
-    return axios.get("http://localhost:9090/api/course/list").then(res=>{
+    return axios.get("http://localhost:9093/api/course/list").then(res=>{
       dispatch({
         type: GET_LIST,
         list: res.data.list
