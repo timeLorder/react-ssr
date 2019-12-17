@@ -25,6 +25,20 @@ const proxy = Proxy({
   }
 })
 
+/**
+ * 处理所有的网络请求，捕捉错误，避免promise.all 的时候出错就 catch
+ * @param {array} promises 网络请求列表
+ */
+const handlePromises = (promises) => {
+  return promises.map(promise =>
+    promise.then(res => {
+      return { ok: true, data: res }
+    }).catch(err => {
+      return { ok: false, data: err }
+    })
+  )
+}
+
 //设置静态资源目录
 app.use(express.static('public'))
 
@@ -43,7 +57,7 @@ app.get('*', (req, res)=>{
     // return match
   })
 
-  Promise.all(promises).then((posts)=>{
+  Promise.all(handlePromises(promises)).then((posts)=>{
     // posts.forEach(p=>{
     //   console.log(p);
     // })
@@ -70,6 +84,8 @@ app.get('*', (req, res)=>{
         </body>
       </html>
     `)
+  }).catch(() => {
+    res.send('500 Server Internal Error')
   })
 })
 

@@ -1,16 +1,15 @@
 //首页逻辑
-import axios from "axios";
 
 const GET_LIST = "HOME/GET_LIST"
 
 export const getHomeList = server => {
   return (dispatch, getState, axiosInstance) => {
-    return axios.get("http://localhost:9093/api/course/list").then(res=>{
+    return axiosInstance.get("/api/course/list").then(res=>{
       dispatch({
         type: GET_LIST,
         list: res.data.list
       })
-    }).catch(error=>{}) //在这里捕获接口报错以保证server里的Promise.all一定会走到then里面
+    })
   }
 }
 
