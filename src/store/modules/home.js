@@ -4,7 +4,7 @@ const GET_LIST = "HOME/GET_LIST"
 
 export const getHomeList = server => {
   return (dispatch, getState, axiosInstance) => {
-    return axiosInstance.get("/api/course/list").then(res=>{
+    return axiosInstance.get("/course/list").then(res=>{
       dispatch({
         type: GET_LIST,
         list: res.data.list

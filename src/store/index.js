@@ -2,21 +2,16 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import homeReducer from "./modules/home";
 import userReducer from "./modules/user";
-import axios from "axios";
+import {createAxios} from "../api";
 
 const reducers = combineReducers({
   home: homeReducer,
   user: userReducer
 })
 
-const serverAxios = axios.create({
-  baseURL: 'http://localhost:9090'
-})
+const serverAxios = createAxios({ type: 'server' })
 
-const clientAxios = axios.create({
-  // 当前路径的 node 服务
-  baseURL: '/'
-})
+const clientAxios = createAxios({ type: 'client' })
 
 export const getServerStore = () => {
   return createStore(reducers, applyMiddleware(thunk.withExtraArgument(serverAxios)))

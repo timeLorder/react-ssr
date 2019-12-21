@@ -1,3 +1,4 @@
 build
 node_modules
-public
+public/*.js
+public/index.csr.html

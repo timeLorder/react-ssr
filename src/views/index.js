@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { connect } from "react-redux";
 import { getHomeList } from "../store/modules/home.js";
+import commons from "../utils/commons.js";
+import styles from "../styles/index.css";
+import withStyles from "isomorphic-style-loader/withStyles";
 
 function Index(props) {
   const [count, setCount] = useState(1)
@@ -11,11 +14,11 @@ function Index(props) {
   },[])
   return (
     <div>
-      <h1>hello {props.targ} !</h1>
+      <h1>Welcome to {commons.title} !</h1>
       <div>{count}</div>
       <button onClick={()=>setCount(count+1)}>增加</button>
       <hr/>
-      <ul>
+      <ul className={styles.courselist}>
         {props.list.map(v=>{
           return <li key={v.id}>{v.name}</li>
         })}
@@ -31,4 +34,4 @@ Index.loadData = store => {
 export default connect(
   state => ({list: state.home.list}),
   {getHomeList}
-)(Index)
+)(withStyles(styles)(Index))
