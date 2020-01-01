@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path"
 import React from "react";
 import express from "express";
+import config from "./config.js";
 import routes from "../src/app.js";
 import commons from "../src/utils/commons.js";
 import Proxy from "http-proxy-middleware";
@@ -64,7 +65,7 @@ app.use(cookieParase())
 
 app.get('*', (req, res)=>{
   //以路由参数判断是否放弃SSR使用CSR
-  if(req.query._mode==='csr'){
+  if(config.csr || req.query._mode==='csr'){
     return csrRender(res)
   }
 
